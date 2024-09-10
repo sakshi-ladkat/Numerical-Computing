@@ -88,26 +88,31 @@ int main()
   printf("%d^%d = %d\n",x,y,pow);
 }
 
-#include<stdio.h>
-int main()
+#include <stdio.h>
+
+int main() {
+    int n, r, sum = 0;
+    printf("Enter number: ");
+    scanf("%d", &n);
+    while (n > 0)
 {
-    int n,r,sum=0;
-    printf("Enter number");
-    scanf("%d",&n);
-    while(n>0)
-    {  
-        r=n%10;
-        n=n/10;
-        sum +=r;
-        if(sum>10)
+        sum = 0; 
+        while (n > 0)
         {
-        n=sum;
+            r = n % 10; 
+            sum += r; 
+            n /= 10;   
         }
-        
+        n = sum; 
+        if (sum < 10)
+        {
+            break;
+        }
     }
-    
-    printf("%d\n",sum);
-    }
+    printf("%d\n", sum);
+    return 0;
+}
+
 
 #include<stdio.h>
 int main()
