@@ -1,0 +1,264 @@
+// Q1 a
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,*nums,i,tar;
+    printf("Enter Number of array Elemnts in array");
+    scanf("%d",&n);
+    nums=(int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&nums[i]);
+    }
+    printf("\nEnter Target");
+    scanf("%d",&tar);
+    i=0;
+    while(i!=n-1)
+    { 
+        if(tar==nums[i]+nums[i+1])
+        {
+            break;
+        }
+        i++;
+    }
+    printf("%d %d\n",i,i+1);
+    free(num);
+}
+
+//Q1 b
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,*arr,i,j,count=0;
+    printf("Enter Number of array Elemnts in array");
+    scanf("%d",&n);
+    arr=(int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    i=0;
+    while(i!=n-1)
+    {   
+        while(j<n)
+        {
+        j=0;
+        if(arr[i]==arr[j])
+        {
+           count++;
+           j++;
+        }
+        }
+       i++;
+    }
+    printf("count = %d\n",count);
+    if(count < 2)
+    {
+        printf("false\n");
+    }
+    else 
+    {
+        printf("true\n");
+    }
+    free(num);
+}
+
+//Q2 a
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,*arr,i,j,count=0;
+    printf("Enter Number of array Elemnts in array");
+    scanf("%d",&n);
+    arr=(int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    i=0;
+    while(i!=n-1)
+    {   
+        while(j<n)
+        {
+        j=0;
+        if(arr[i]==arr[j])
+        {
+           count++;
+           j++;
+        }
+        }
+       i++;
+    }
+    printf("count = %d\n",count);
+    if(count < 2)
+    {
+        printf("false\n");
+    }
+    else 
+    {
+        printf("true\n");
+    }
+    free(num);
+}
+
+//Q2 b
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int n,*num,i,tar;
+    printf("Enter Number of array Elemnts in array");
+    scanf("%d",&n);
+    num=(int*)malloc(sizeof(int)*n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&num[i]);
+    }
+    printf("\nEnter Target");
+    scanf("%d",&tar);
+    i=0;
+    while(i!=n-1)
+    {
+        if(tar==num[i])
+        {
+            printf("%d\n",i);
+        }
+        if(num[i] < tar && num[i+1] > tar)
+        {
+            printf("%d\n",i+1);
+        }
+        if(tar < num[0])
+        {
+            printf("0\n");
+            break;
+        }
+        if(tar > num[n-1])
+        {
+            printf("%d\n",n);
+            break;
+        }
+        i++;
+    }
+    free(num);
+}
+
+// Q2 C
+#include<stdio.h>
+int main()
+{   int a[100][100];
+    int m,n,i,min[100],max[100],j;
+    printf("Enter Number of rows and colums");
+    scanf("%d %d",&m,&n);
+    for(i=0;i<m;i++)
+    {
+    for(j=0;j<n;j++)
+    {
+    printf("[%d][%d]=",i,j);
+     scanf("%d",&a[i][j]);
+    }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {  min[i]=a[i][j];
+            if(min[i]> a[i][j])
+            {
+                min[i] = a[i][j];
+            }
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        { max[i]=a[j][i];
+            if(max[i]< a[j][i])
+            {
+                max[i] = a[j][i];
+            }
+        }
+    }
+    for(i=0;i<m;i++)
+    {
+        if(max[i]==min[i])
+        {
+            printf("%d\n",min[i]);
+        }
+    }
+    
+
+}
+
+//Q3 b
+#include<stdio.h>
+int main()
+{   int a[100][100];
+    int m,n,i,j,flag=0;
+    printf("Enter Number of rows and colums");
+    scanf("%d %d",&m,&n);
+    for(i=0;i<m;i++)
+    {
+    for(j=0;j<n;j++)
+    {
+    printf("[%d][%d]=",i,j);
+     scanf("%d",&a[i][j]);
+    }
+    }for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {  
+            if(a[i][j]==a[i+1][j+1])
+            {
+                flag=1;
+            }
+        }
+    }
+    if(flag==1)
+    {
+        printf("Matrix is Toeplitz");
+    }
+    else
+    {
+         printf("Matrix is not Toeplitz");
+    }
+    
+}
+
+//Q3 C
+#include<stdio.h>
+int main()
+{   int a[100][100];
+    int m,n,i,j,flag=0;
+    printf("Enter Number of rows and colums");
+    scanf("%d %d",&m,&n);
+    for(i=0;i<m;i++)
+    {
+    for(j=0;j<n;j++)
+    {
+    printf("[%d][%d]=",i,j);
+     scanf("%d",&a[i][j]);
+    }
+    }for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {  
+            if(a[i][j]==a[i+1][j+1])
+            {
+                flag=1;
+            }
+        }
+    }
+    if(flag==1)
+    {
+        printf("Matrix is Toeplitz");
+    }
+    else
+    {
+         printf("Matrix is not Toeplitz");
+    }
+    
+}
+
+
