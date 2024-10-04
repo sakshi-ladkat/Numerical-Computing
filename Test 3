@@ -23,7 +23,7 @@ int main()
         i++;
     }
     printf("%d %d\n",i,i+1);
-    free(num);
+    free(num)
 }
 
 //Q1 b
