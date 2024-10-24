@@ -4,7 +4,7 @@ int main()
 {
     double arr[5],sum=0,mult=1
     int i;
-    printf("Enter 5  Elements")
+    printf("Enter 5  Elements");
     for(i=0;i<5;i++)
     {
         scanf("%lf",&arr[i]);
