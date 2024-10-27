@@ -4,7 +4,7 @@ int main()
 {
     int a,b,i;
     printf("Enter value of a & b");
-    scanf("%d %d",&a,&b);
+    scanf("%d %d",&a,&b)
     printf("%d + %di\n",a,b);
 }
 //Q1 b
