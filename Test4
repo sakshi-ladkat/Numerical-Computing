@@ -1,0 +1,77 @@
+Q1
+#include<stdio.h>
+int main()
+{
+    printf("Name=Sakshi Ladkat \n Age=21 \n Hometown=Pune\n");
+}
+
+Q2
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    printf("Enter two integers");
+    scanf("%d %d",&a,&b);
+    printf("sum=%d \n subtraction=%d \n multiplication =%d\n",a+b,a-b,a*b);
+}
+
+Q3
+#include<stdio.h>
+int main()
+{  float f;
+    printf("Enter Floating point number");
+    scanf("%f",&f);
+    printf("floating number= %.2f\n",f);
+}
+
+Q4
+#include<stdio.h>
+int main()
+{
+
+    double a,b;
+    printf("Enter two floating point numbers");
+    scanf("%lf %lf",&a,&b);
+    if(a==b)
+    {
+        printf("Equal\n");
+    }
+    else
+    {
+        printf("Not Equal\n");
+    }
+}
+
+#include<stdio.h>
+int main()
+{
+
+    float a,b;
+    printf("Enter two floating point numbers");
+    scanf("%f %f",&a,&b);
+    if(a==b)
+    {
+        printf("Equal\n");
+    }
+    else
+    {
+        printf("Not Equal\n");
+    }
+}
+
+Q5
+#include<stdio.h>
+int main()
+{
+    int n;
+    printf("Enter a number");
+    scanf("%d",&n);
+    if(n%2==0)
+    {
+        printf("%d is Even\n",n);
+    }
+    else
+    {
+        printf("%d is odd\n",n);
+    }
+}
