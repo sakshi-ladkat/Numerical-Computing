@@ -75,3 +75,84 @@ int main()
         printf("%d is odd\n",n);
     }
 }
+
+Q6
+#include<stdio.h>
+int main()
+{
+    int m;
+    printf("Enter Marks");
+    scanf("%d",&m);
+    if(0<=m && m<=100)
+    {
+        if(m<35)
+        {
+            printf("F\n");
+        }
+        if(m>=35 && m<40)
+        {
+            printf("P\n");
+        }
+        if(m>=40 && m<55)
+        {
+            printf("C\n");
+        }
+        if(m>=55 && m<65)
+        {
+            printf("B\n");
+        }
+        if(m>=65 && m<85)
+        {
+            printf("A\n");
+        }
+        if(m>85)
+        {
+            printf("O\n");
+        }
+    }
+    }
+
+Q7
+#include<stdio.h>
+int main()
+{
+    float c,f;
+    printf("enter temperature in Celcius");
+    scanf("%f",&c);
+    f=(1.8*c)+32;
+    printf("Temperature in fahrenheit =%f\n",f);
+
+}
+
+Q8
+#include<stdio.h>
+int main()
+{
+    int i;
+    float f;
+    char c;
+    printf("size of int = %ld\n",sizeof(i));
+    printf("size of float = %ld\n",sizeof(f));
+    printf("size of char = %ld\n",sizeof(c));
+}
+
+Q9
+#include<stdio.h>
+int main()
+{  float r,area;
+    printf("Enter radius of a circle");
+    scanf("%f",&r);
+    area=3.14*r*r;
+    printf("Area of circle=%f\n",area);
+}
+
+Q10
+#include<stdio.h>
+int main()
+{
+    int a,b,x;
+    printf("Enter Coefficient of equation ax+b=0");
+    scanf("%d %d",&a,&b);
+    x=-b/a;
+    printf("x=%d\n",x);
+}
