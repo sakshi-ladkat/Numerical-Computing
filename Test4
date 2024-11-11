@@ -9,7 +9,7 @@ Q2
 #include<stdio.h>
 int main()
 {
-    int a,b;
+    int a,b
     printf("Enter two integers");
     scanf("%d %d",&a,&b);
     printf("sum=%d \n subtraction=%d \n multiplication =%d\n",a+b,a-b,a*b);
