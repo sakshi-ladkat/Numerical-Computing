@@ -2,7 +2,7 @@
 #include <stdio.h>
 int main()
 {
-    double arr[5],sum=0,mult=1
+    double arr[5],sum=0,mult=1;
     int i;
     printf("Enter 5  Elements");
     for(i=0;i<5;i++)
