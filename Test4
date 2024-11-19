@@ -156,3 +156,152 @@ int main()
     x=-b/a;
     printf("x=%d\n",x);
 }
+
+Q11
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    printf("Enter three integers");
+    scanf("%d %d %d",&a,&b,&c);
+    if(a>0 && b>0 && c>0)
+    {
+        if(a>b && a>c)
+         {
+            if((a*a)==(b*b)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+   
+        else if(b>a && b>c)
+         {
+            if((b*b)==(a*a)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+        else if(c>a && c>b)
+         {
+            if((c*c)==(a*a)+(b*b))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+         
+         
+         
+    }
+    printf("%d %d %d are not pythagorean triplet\n",a,b,c);
+    
+}
+
+Q12
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    printf("Enter three integers");
+    scanf("%d %d %d",&a,&b,&c);
+    if(a>0 && b>0 && c>0)
+    {
+        if(a>b && a>c)
+         {
+            if((a*a)==(b*b)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+   
+        else if(b>a && b>c)
+         {
+            if((b*b)==(a*a)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+        else if(c>a && c>b)
+         {
+            if((c*c)==(a*a)+(b*b))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+         
+         
+         
+    }
+    printf("%d %d %d are not pythagorean triplet\n",a,b,c);
+    
+}
+
+Q13
+#include<stdio.h>
+int main()
+{
+    float b,h,area;
+    printf("Enter base and height for the triangle");
+    scanf("%f %f",&b,&h);
+    area=(0.5)*b*h;
+    printf("Area of a triangle=%f\n",area);
+}
+
+Q14
+#include<stdio.h>
+int main()
+{
+    int a,b;
+    printf("Enter two numbers");
+    scanf("%d %d",&a,&b);
+    if(a>b)
+    {
+        printf("%d is greater than %d\n",a,b);
+    }
+    else if(a<b)
+    {
+        printf("%d is less than %d\n",a,b);
+    }
+    else if(a==b)
+    {
+        printf("%d is equal to %d\n",a,b);
+    }
+}
+
+Q15
+#include<stdio.h>
+int main()
+{
+    int a,b,c;
+    printf("Enter three integers");
+    scanf("%d %d %d",&a,&b,&c);
+    if(a>0 && b>0 && c>0)
+    {
+        if(a>b && a>c)
+         {
+            if((a*a)==(b*b)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+   
+        else if(b>a && b>c)
+         {
+            if((b*b)==(a*a)+(c*c))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+        else if(c>a && c>b)
+         {
+            if((c*c)==(a*a)+(b*b))
+            {
+                printf("%d %d %d are pythagorean triplet\n",a,b,c);
+            }
+         }
+         
+         
+         
+    }
+    printf("%d %d %d are not pythagorean triplet\n",a,b,c);
+    
+}
