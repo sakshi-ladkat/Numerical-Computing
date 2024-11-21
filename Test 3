@@ -11,7 +11,7 @@ int main()
     {
         scanf("%d",&nums[i]);
     }
-    printf("\nEnter Target");
+    printf("\nEnter Target")
     scanf("%d",&tar);
     i=0;
     while(i!=n-1)
