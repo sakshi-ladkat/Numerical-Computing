@@ -16,7 +16,7 @@ public:
     {
         row = r;
         col = c;
-        values.resize(r, vector<int>(c));
+        values.vector<(r, vector<int>(c))>;
     }
     static Matrix Input(const string &filepath);
     void Display() const;
