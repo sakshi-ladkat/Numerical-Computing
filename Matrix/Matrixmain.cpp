@@ -18,11 +18,16 @@ int main()
     cout << "Matrix 1 is Identity :" << matrix2.isIdentity() << endl;
 
     Matrix Add = matrix1.Addition(matrix2);
-    std::cout << "\nMatrix Addition" << std::endl;
+    cout << "\nMatrix Addition" << endl;
     Add.Display();
 
     // Matrix subtraction
     Matrix Sub = matrix1.Subtraction(matrix2);
-    cout << "\nMatrix Subtraction" << std::endl;
+    cout << "\nMatrix Subtraction" << endl;
     Sub.Display();
+
+    // Upper Matrix Triangularization
+    Matrix Upper = matrix1.BUpperTriangular();
+    cout << "\n Upper Triangular Matrix" << endl;
+    Upper.Display();
 }
