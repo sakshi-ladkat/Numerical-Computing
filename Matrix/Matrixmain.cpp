@@ -3,9 +3,9 @@ using namespace std;
 
 int main()
 {
-    Matrix matrix1 = Matrix::Input("matrix1.txt");
-    Matrix matrix2 = Matrix::Input("matrix2.txt");
-
+  Matrix matrix1 = Matrix::Input("matrixA.txt");
+  Matrix matrix2 = Matrix::Input("matrixb.txt");
+  /*
     cout << "Matrix 1:" << endl;
     matrix1.Display();
     cout << "\nMatrix 2:" << endl;
@@ -25,9 +25,18 @@ int main()
     Matrix Sub = matrix1.Subtraction(matrix2);
     cout << "\nMatrix Subtraction" << endl;
     Sub.Display();
+  */
 
-    // Upper Matrix Triangularization
-    Matrix Upper = matrix1.BUpperTriangular();
-    cout << "\n Upper Triangular Matrix" << endl;
-    Upper.Display();
+  // Matrix UpperTriangular
+  cout << "\n Upper Triangularization" << endl;
+  Matrix Upper = matrix1.UpperTriangle();
+  Upper.Display();
+
+  // Matrix GaussianElimination
+  cout << "\nGaussian Elimination" << endl;
+  Matrix Answer = matrix1.GaussianElimination(matrix2);
+  Answer.Display();
+  // LU Decomposition
+  cout << "\n L-U Decomposition\n" << endl;
+  Matrix LUsolution = matrix1.LUDecomposition();
 }

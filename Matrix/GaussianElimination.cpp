@@ -1,17 +1,17 @@
 #include "Matrix.hpp"
 using namespace std;
 
-Matrix Matrix::LowerTriangular()
+Matrix Matrix ::GaussianElimination(const Matrix &second)
 {
-    if (row != col)
-        throw invalid_argument("Matrix Should be squared Matrix");
-    Matrix result(row, col);
-    for (int i = 0; i < row; i++)
-    {
-        for (int j = i + 1; j < col; j++)
-        {
-            if (i == j)
-            
-        }
-    }
+    // Creates Augumented Matrix
+    Matrix Augumented = this->createAugmented(second);
+    // Upper Matrix Triangularization
+    Matrix Upper = Augumented.UpperTriangle();
+    cout << "\n Upper Triangular Matrix" << endl;
+    // Display Upper Triangular Matrix
+    Upper.Display();
+    // Back Substitution
+    Matrix solution = Upper.BackSubstitution();
+    // Printing solution
+    solution.ShowSolution();
 }
