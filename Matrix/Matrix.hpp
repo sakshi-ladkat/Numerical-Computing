@@ -19,6 +19,7 @@ public:
         col = c;
         values = vector<vector<long double>>(r, vector<long double>(c, 0));
     }
+    
     static Matrix Input(const string &filepath);
     void Display() const;
     bool isSymmetric() const;
