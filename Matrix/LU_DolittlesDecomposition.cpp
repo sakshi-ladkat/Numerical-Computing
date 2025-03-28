@@ -1,7 +1,7 @@
 #include "Matrix.hpp"
 using namespace std;
 
-Matrix Matrix::DolittileDecomposition()
+Matrix Matrix::DolittileDecomposition(const Matrix &second)
 {
 
     Matrix L(row, col);
@@ -41,7 +41,13 @@ Matrix Matrix::DolittileDecomposition()
             }
         }
     }
-
+   /*
     Matrix Solution = L.LUAugumented(U);
+    return Solution;
+    */
+    Matrix y = L.createAugmented(second);
+    Matrix z = y.ForwardSubstitution();
+    Matrix x = U.createAugmented(z);
+    Matrix Solution = x.BackSubstitution();
     return Solution;
 }

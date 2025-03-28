@@ -1,6 +1,28 @@
 #include "Matrix.hpp"
 using namespace std;
 
+Matrix Matrix::ForwardSubstitution()
+{
+    Matrix solution(row, 1);
+
+    for (int i = 0; i <= row-1; i++)
+    {
+
+        solution.values[i][0] = this->values[i][col - 1];
+
+        for (int j = 0; j < i; j++)
+        {
+            solution.values[i][0] -= this->values[i][j] * solution.values[j][0];
+        }
+
+        solution.values[i][0] /= this->values[i][i];
+    }
+
+    return solution;
+}
+
+
+
 Matrix Matrix::BackSubstitution()
 {
     Matrix solution(row, 1);

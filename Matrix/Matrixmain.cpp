@@ -45,7 +45,7 @@ int main()
   // LU Decomposition (49 X 49 )
   cout << "\n L-U Decomposition\n"
        << endl;
-  Matrix LUsolution = matrix1.LUDecomposition();
+  Matrix LUsolution = matrix1.LUDecomposition(matrix2);
 
   /*
       // Matrix GaussianElimination (225 X 225)

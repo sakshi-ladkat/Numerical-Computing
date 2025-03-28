@@ -1,7 +1,7 @@
 #include "Matrix.hpp"
 using namespace std;
 
-Matrix Matrix::CroutDecomposition()
+Matrix Matrix::CroutDecomposition(const Matrix &second)
 {
     Matrix result(*this);
     Matrix L(row, col);
@@ -34,7 +34,12 @@ Matrix Matrix::CroutDecomposition()
             U.values[j][i] = (result.values[j][i] - sum) / L.values[j][j];
         }
     }
-
-    Matrix Solution = L.LUAugumented(U);
+    /*
+     Matrix Solution = L.LUAugumented(U);
+     return Solution;*/
+    Matrix y = L.createAugmented(second);
+    Matrix z = y.ForwardSubstitution();
+    Matrix x = U.createAugmented(z);
+    Matrix Solution = x.BackSubstitution();
     return Solution;
 }

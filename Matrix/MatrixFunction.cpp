@@ -40,6 +40,7 @@ Matrix Matrix::Transpose()
     }
     return result;
 }
+
 Matrix Matrix::LUAugumented(const Matrix &second)
 {
     if (this->row != second.row)

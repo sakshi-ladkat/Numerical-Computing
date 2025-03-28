@@ -19,7 +19,7 @@ public:
         col = c;
         values = vector<vector<long double>>(r, vector<long double>(c, 0));
     }
-    
+
     static Matrix Input(const string &filepath);
     void Display() const;
     bool isSymmetric() const;
@@ -30,12 +30,13 @@ public:
     Matrix UpperTriangle();
     Matrix createAugmented(const Matrix &second);
     Matrix GaussianElimination(const Matrix &second);
+    Matrix ForwardSubstitution();
     Matrix BackSubstitution();
     Matrix ShowSolution();
-    Matrix LUDecomposition();
-    Matrix CroutDecomposition();
-    Matrix DolittileDecomposition();
-    Matrix CholeskiDecomposition();
+    Matrix LUDecomposition(const Matrix &second);
+    Matrix CroutDecomposition(const Matrix &second);
+    Matrix DolittileDecomposition(const Matrix &second);
+    Matrix CholeskiDecomposition(const Matrix &second);
     Matrix LUAugumented(const Matrix &second);
 
     //~Matrix();
