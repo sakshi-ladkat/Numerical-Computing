@@ -35,3 +35,21 @@ bool Matrix ::isIdentity() const
                 }
     return true;
 }
+
+bool Matrix ::isDiaginallyDominant() const
+{ int r,c;
+    for (int i = 0; i < row; i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < col; j++)
+        {
+            if (i != j)
+            {
+                sum += abs(values[i][j]);
+            }
+            if (abs(values[i][i]) < sum)
+                return false;
+        }
+    }
+    return true;
+}
