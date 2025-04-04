@@ -68,3 +68,8 @@ Matrix Matrix::LUAugumented(const Matrix &second)
 
     return result;
 }
+
+Matrix MakeDiagonalDominant()
+{
+    
+}
