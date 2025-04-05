@@ -34,7 +34,7 @@ int main()
   cout << "\n Upper Triangularization" << endl;
   Matrix Upper = matrix1.UpperTriangle();
   Upper.Display();
- */
+
 
   // Matrix GaussianElimination (49 X 49 )
   cout << "\nGaussian Elimination" << endl;
@@ -47,7 +47,7 @@ int main()
        << endl;
   Matrix LUsolution = matrix1.LUDecomposition(matrix2);
 
-  /*
+
       // Matrix GaussianElimination (225 X 225)
       cout << "\nGaussian Elimination" << endl;
       Matrix Answer  = matrix3.GaussianElimination(matrix4);
@@ -56,4 +56,7 @@ int main()
          << endl;
     Matrix LUsolution = matrix3.LUDecomposition();
     */
+
+    cout << "Matrix 5 is DiagonallyDominant :"<< matrix5.isDiaginallyDominant();
+
 }
