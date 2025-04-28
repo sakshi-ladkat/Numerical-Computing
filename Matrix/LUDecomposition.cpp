@@ -5,24 +5,42 @@ Matrix Matrix::LUDecomposition(const Matrix &second)
 {
     if (this->row != this->col)
         throw runtime_error("Matrix Must Be Square Matrix");
-
-    // Crouts Decomposition
-    cout << "LU - Decomposition by Crout's Decomposition" << endl;
-    Matrix CroutSolution = this->CroutDecomposition(second);
-    CroutSolution.ShowSolution();
-
-    // Do-Littles Decomposition
-    cout << "LU - Decomposition by Do-little Decomposition" << endl;
-    Matrix DolittleSoultion = this->DolittileDecomposition(second);
-    DolittleSoultion.ShowSolution();
-
-    // Choleski Decomposition
-    cout << "LU - Decomposition by choleski Decomposition" << endl;
-    if (this->isSymmetric())
+    int a;
+    cout << "1.LU - Decomposition by Crout's Decomposition \n2.LU -Decomposition by Do - little Decomposition\n3.LU - Decomposition by Choleski Decomposition\n Enter your choice :";
+    cin >> a;
+    Matrix Solution(row, 1);
+    switch (a)
     {
-        Matrix CholeskiSolution = this->CholeskiDecomposition(second);
-        CholeskiSolution.ShowSolution();
+    case 1:
+        // Crouts Decomposition
+        Solution = this->CroutDecomposition(second);
+        break;
+
+    case 2:
+        // Do-Littles Decomposition
+        Solution = this->DolittileDecomposition(second);
+        break;
+
+    case 3:
+        // Choleski Decomposition
+        cout << "LU - Decomposition by Choleski Decomposition" << endl;
+        try
+        {
+            if (!this->isSymmetric())
+            {
+                throw std::invalid_argument("Matrix must be symmetric.");
+            }
+
+            Solution = this->CholeskiDecomposition(second);
+        }
+        catch (const std::invalid_argument &e)
+        {
+            cout << "Skipping Choleski Decomposition: " << e.what() << endl;
+        }
+        break;
+    default:
+        cout << "Invalid choice";
     }
-    else
-        throw runtime_error("Matrix Must Be Symmetric ");
+    Solution.ShowSolution();
+    return Solution;
 }

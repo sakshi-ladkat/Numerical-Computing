@@ -1,5 +1,6 @@
 #include "Matrix.hpp"
 using namespace std;
+
 Matrix Matrix::UpperTriangle()
 {
     Matrix result = *this; 

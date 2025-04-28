@@ -14,4 +14,5 @@ Matrix Matrix ::GaussianElimination(const Matrix &second)
     Matrix solution = Upper.BackSubstitution();
     // Printing solution
     solution.ShowSolution();
+    return solution;
 }

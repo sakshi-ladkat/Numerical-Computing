@@ -36,7 +36,7 @@ bool Matrix ::isIdentity() const
     return true;
 }
 
-bool Matrix ::isDiaginallyDominant() const
+bool Matrix ::isDiagonallyDominant() const
 { int r,c;
     for (int i = 0; i < row; i++)
     {
