@@ -1,7 +1,11 @@
 class Newton_interpolation:
     def __init__(self, filename):
-        self.x , self.y = self.read_from_file("data.txt")
+        self.x , self.y = self.read_from_file(filename)
         self.n = len(self.x)
+        self.h = self.calculate_h()
+        self.table = self.build_difference_table()
+    
+    def 
 
     def read_from_file(self , filename):
         x,y = [],[]
@@ -31,14 +35,32 @@ class Newton_interpolation:
     def show_Difference_table(self):
         table = self.build_difference_table()
         n = self.n
-        for j in range(1,n+1):
-            for i in range(n - j + 1):
-                print(f"table[i][j]")
+        result = []
+        for i in range(n):
+            row = ""
+            for j in range(1,n+1):
+                if j <= n- i:
+                    row += f"{table[i][j]:>8}"
+            result.append(row.strip())
+        return "\n".join(result)
+
+    def get_Difference_table(self):
+        return self.build_difference_table()
 
 
-            
-    
+class Forward_Newton_interpolation(Newton_interpolation):
+    def __init__(self,)
 
+# -----------------------------
+# Main function
+# -----------------------------
+def main():
+        filename = "Data.txt"
+        nf = Newton_interpolation(filename)
 
+        print("Difference Table:")
+        print(nf.show_Difference_table())
 
- 
+if __name__ == "__main__":
+    main()
+        
