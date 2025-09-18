@@ -1,3 +1,5 @@
+import random
+
 class Newton_interpolation:
     #--------------------------
     #Constructor for the class
@@ -21,6 +23,14 @@ class Newton_interpolation:
                    y.append(float(parts[1]))
         return x, y
     
+
+    #---------------------------------
+    # Show Data
+    #---------------------------------
+    def show_data(self):
+        print("X values:",self.x)
+        print("Y values:",self.y)
+
     #-------------------------------
     #Calculates factorial 
     #-------------------------------
@@ -72,7 +82,7 @@ class Newton_interpolation:
 #--------------------------------------
 # Newton's_Forward interpolation 
 #--------------------------------------
-class Forward_Newton_interpolation(Newton_interpolation):
+class Forward_Newton_interpolation:
     def __init__(self,base:Newton_interpolation):
         self.base = base 
 
@@ -93,7 +103,7 @@ class Forward_Newton_interpolation(Newton_interpolation):
 #-------------------------------------
 # Newton's_Backward interpolation
 #-------------------------------------
-class Backward_Newton_interpolation(Newton_interpolation):
+class Backward_Newton_interpolation:
     def __init__(self,base:Newton_interpolation):
         self.base = base
 
@@ -114,7 +124,7 @@ class Backward_Newton_interpolation(Newton_interpolation):
 #--------------------------------
 # Stirling's Interpolation 
 #--------------------------------
-class Stirling_interpolation(Newton_interpolation):
+class Stirling_interpolation:
     def __init__(self,base:Newton_interpolation):
         self.base = base
 
@@ -170,9 +180,9 @@ class InterpolationSelector:
         self.base = Newton_interpolation(filename)
         
         if equal_spacing:
-            self.forward = Forward_Newton_interpolation(filename)
-            self.backward =Backward_Newton_interpolation(filename)
-            self.stirling =Stirling_interpolation(filename)
+            self.forward = Forward_Newton_interpolation(self.base)
+            self.backward =Backward_Newton_interpolation(self.base)
+            self.stirling =Stirling_interpolation(self.base)
         self.divided = Divided_Difference_interpolation(filename)
 
     def show_table(self):
@@ -183,29 +193,41 @@ class InterpolationSelector:
 
     def interpolate(self,value):
         if not self.equal_spacing:
-            return self.divided.interpolate(value) , "Divided Difference"
+            return self.divided.interpolate(value),"Divided Difference"
         
-        n = self.forward.n
-        x = self.forward.x
+        n = self.base.n
+        x = self.base.x
 
+        if value in x:
+           methods = [
+               ("Forward Newton",self.forward.interpolate),
+               ("Backward Newton",self.backward.interpolate),
+               ("Stirling",self.stirling.interpolate)]
+           method_name , method_func = random.choice(methods)
+           return method_func(value),method_name
+        
         if(abs(value - x[0]) < abs(value - x[-1]) and abs(value - x[0]) < abs(value - x[n//2])):
-            return self.forward.interpolate(value)
+            return self.forward.interpolate(value) , "Forward Newton Interpolation"
         elif(abs(value - x[-1]) < abs(value - x[0]) and abs(value - x[-1]) < abs(value - x[n//2])):
-            return self.backward.interpolate(value) , "Backward Newton"
+            return self.backward.interpolate(value) , "Backward Newton Interpolation"
         else:
-            return self.stirling.interpolate(value), "stirling"
+            return self.stirling.interpolate(value), "stirling Newton Interpolation"
 
 # -----------------------------
 # Main function
 # -----------------------------
 def main():
-        filename = "Data.txt"
+        filename = "C:/Users/Sakshi Ladkat/Desktop/Git/Numerical-Computing/NC - 2/Interpolation/data.txt"
+
+        value = float(input("\n Enter value to interpolate :"))
+
         selector = InterpolationSelector(filename,equal_spacing=True)
 
+        selector.base.show_data()
+        
         print("Difference Table\n")
         print(selector.show_table())
 
-        value = float(input("\n Enter value to interpolate :"))
         result , method = selector.interpolate(value)
         print(f"\nInterpolated value using {method}:{result}")
 
