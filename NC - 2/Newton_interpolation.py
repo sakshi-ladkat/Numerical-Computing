@@ -1,6 +1,6 @@
 import random
 
-class Newton_interpolation:
+class interpolation:
     #--------------------------
     #Constructor for the class
     #---------------------------
@@ -83,7 +83,7 @@ class Newton_interpolation:
 # Newton's_Forward interpolation 
 #--------------------------------------
 class Forward_Newton_interpolation:
-    def __init__(self,base:Newton_interpolation):
+    def __init__(self,base:interpolation):
         self.base = base 
 
     def interpolate(self,value):
@@ -104,7 +104,7 @@ class Forward_Newton_interpolation:
 # Newton's_Backward interpolation
 #-------------------------------------
 class Backward_Newton_interpolation:
-    def __init__(self,base:Newton_interpolation):
+    def __init__(self,base:interpolation):
         self.base = base
 
     def interpolate(self,value):
@@ -125,7 +125,7 @@ class Backward_Newton_interpolation:
 # Stirling's Interpolation 
 #--------------------------------
 class Stirling_interpolation:
-    def __init__(self,base:Newton_interpolation):
+    def __init__(self,base:interpolation):
         self.base = base
 
     def interpolate(self,value):
@@ -148,7 +148,7 @@ class Stirling_interpolation:
 #-------------------------------------
 # Divided Difference (Unequal Spacing)
 #-------------------------------------
-class Divided_Difference_interpolation(Newton_interpolation):
+class Divided_Difference_interpolation(interpolation):
     def build_difference_table(self):
        n = self.n
        table = [[0] * n for _ in range(n)]
@@ -172,12 +172,12 @@ class Divided_Difference_interpolation(Newton_interpolation):
         return result 
 
 #-------------------------------------------
-# wrapper Class : Method_Selector 
+# wrapper Class
 #------------------------------------------
 class InterpolationSelector:
     def __init__(self,filename,equal_spacing = True):
         self.equal_spacing = equal_spacing
-        self.base = Newton_interpolation(filename)
+        self.base = interpolation(filename)
         
         if equal_spacing:
             self.forward = Forward_Newton_interpolation(self.base)
