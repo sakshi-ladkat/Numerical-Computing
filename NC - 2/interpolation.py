@@ -1,5 +1,8 @@
 import random
 
+#----------------------------
+#Base Interpolation Class
+#---------------------------
 class interpolation:
     #--------------------------
     #Constructor for the class
@@ -171,6 +174,48 @@ class Divided_Difference_interpolation(interpolation):
             result += self.table[0][i]*product
         return result 
 
+#-----------------------------------------
+# Guass Forward Interpolation
+#-----------------------------------------
+class GaussForwardInterpolation:
+    def __init__(self,base:interpolation):
+        self.base = base
+    
+    def interpolate(self,value):
+        n = self.base.n
+        h = self.base.h
+        k = min(range(n),key=lambda i:abs(self.base.x[i]-value))
+        p = (value - self.base.x[k])/h
+
+        result = self.base.y[k]
+        term = 1
+        for i in range(1,n-k):
+            term *=(p-(i-1))/i
+            result += term * self.base.table[k][i+1]
+        return result 
+
+#-------------------------------------------
+# Gauss Backward Interpolation
+#-------------------------------------------
+class GaussBackwardInterpolation:
+    def __init__(self,base:interpolation):
+        self.base = base
+
+    def interpolate(self,value):
+        n = self.base.n
+        h = self.base.h
+        k = min(range(n),key = lambda i:abs(self.base.x[i]-value))
+        p = (value-self.base.y[k])/h
+
+        result = self.base.y[k]
+        term = 1
+        for i in range(1,k+1):
+            term *=(p+(i-1))
+            result += term * self.base.table[k-i][i+1]
+        return result
+
+
+
 #-------------------------------------------
 # wrapper Class
 #------------------------------------------
@@ -183,6 +228,8 @@ class InterpolationSelector:
             self.forward = Forward_Newton_interpolation(self.base)
             self.backward =Backward_Newton_interpolation(self.base)
             self.stirling =Stirling_interpolation(self.base)
+            self.gauss_forward = GaussForwardInterpolation(self.base)
+            self.gauss_backward = GaussBackwardInterpolation(self.base)
         self.divided = Divided_Difference_interpolation(filename)
 
     def show_table(self):
@@ -197,40 +244,36 @@ class InterpolationSelector:
         
         n = self.base.n
         x = self.base.x
-
+      
+    #--- case 1: Exact data point ---
         if value in x:
+           k = x.index(value)
            methods = [
                ("Forward Newton",self.forward.interpolate),
                ("Backward Newton",self.backward.interpolate),
-               ("Stirling",self.stirling.interpolate)]
+               ("Stirling",self.stirling.interpolate),
+               ("Guass Forward Newton",self.gauss_forward.interpolate),
+               ("Gauss Backward Newton",self.gauss_backward.interpolate),]
            method_name , method_func = random.choice(methods)
            return method_func(value),method_name
         
+    #--- case 2: Aproximate interpolation ---
+        k = min(range(n),key = lambda i:abs(x[i]-value))
+        
+        # Near start -> Forward Newton
         if(abs(value - x[0]) < abs(value - x[-1]) and abs(value - x[0]) < abs(value - x[n//2])):
             return self.forward.interpolate(value) , "Forward Newton Interpolation"
+        
+        # Near end -> Backward Newton
         elif(abs(value - x[-1]) < abs(value - x[0]) and abs(value - x[-1]) < abs(value - x[n//2])):
             return self.backward.interpolate(value) , "Backward Newton Interpolation"
+        
+        #Middle region -> Stirling / Gauss
         else:
-            return self.stirling.interpolate(value), "stirling Newton Interpolation"
+            if k == n//2:            
+                return self.stirling.interpolate(value), "stirling Newton Interpolation"
+            elif k < n//2:
+                return self.gauss_forward.interpolate(value),"Gauss Forward Interpolation"
+            else:
+                return self.gauss_backward.interpolate(value),"Gauss Backward Interpolation"
 
-# -----------------------------
-# Main function
-# -----------------------------
-def main():
-        filename = "C:/Users/Sakshi Ladkat/Desktop/Git/Numerical-Computing/NC - 2/Interpolation/data.txt"
-
-        value = float(input("\n Enter value to interpolate :"))
-
-        selector = InterpolationSelector(filename,equal_spacing=True)
-
-        selector.base.show_data()
-        
-        print("Difference Table\n")
-        print(selector.show_table())
-
-        result , method = selector.interpolate(value)
-        print(f"\nInterpolated value using {method}:{result}")
-
-if __name__ == "__main__":
-    main()
-        

@@ -11,6 +11,7 @@ y = iris.target
 
 X_train , X_test , y_train ,y_test =train_test_split(x,y,test_size=0.2,random_state=None)
 
+#Calculating Euclidean_Distance 
 def distance(a,b):
     return np.sqrt(np.sum(a-b)**2)
 
