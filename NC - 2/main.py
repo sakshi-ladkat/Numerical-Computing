@@ -1,6 +1,10 @@
 from interpolation import InterpolationSelector
 from scipy.integrate import quad
 from Integration import Trapezoidal,SimpsonOneThird,SimpsonThreeEight
+from ODE import SimpleEuler,ModifiedEuler,RK2,RK4
+from plot import plot_error_vs_h
+from Powermethod import PowerMethod 
+import numpy as np
 import math 
 
 # -----------------------------
@@ -52,10 +56,9 @@ def main():
         elif choice == 2:
               tol = float(input("Enter tolerance ( e.g,1e-4)"))
               for method in methods:
-                    n_auto,approx_auto,est_err = method.auto_integrate(tol)
-                    true_err = abs(exact - approx_auto)
-                    results.append((method.statement(),n_auto,approx_auto,est_err))
-
+                    n_auto, approx_auto, est_err = method.auto_integrate(tol)
+                    true_err = abs(exact - approx_auto) 
+                    results.append((method.statement(), n_auto, approx_auto, est_err, true_err))
         else:
               print("Invalid choice ")
 
@@ -66,7 +69,51 @@ def main():
         print("-"*85)
         for r in results:
               print(f"{r[0]:<25}{r[1]:<10}{r[2]:<15.8f}{r[3]:<20.8f}{r[4]:<15.8f}")
+
       
+        print("\n -------ODE Solver - Euler and Runge Kutta--------")
+
+        # User input
+        x0 = float(input("Enter x0: "))
+        y0 = float(input("Enter y0: "))
+        xn = float(input("Enter xn: "))
+        h_list = [0.5 / (2**i) for i in range(10)]
+
+      # Example ODE and exact solution
+        def func(x, y):
+              return x + y
+
+        def exact(x):
+              return math.exp(x) - x - 1  # exact solution for dy/dx = x+y, y(0)=0
+
+       # Initialize solvers (first h as default)
+        methods = [
+               SimpleEuler(func, x0, y0, h_list[0], xn, exact),
+               ModifiedEuler(func, x0, y0, h_list[0], xn, exact),
+               RK2(func, x0, y0, h_list[0], xn, exact),
+               RK4(func, x0, y0, h_list[0], xn, exact)]
+
+       # Solve and show result for first step size
+        for method in methods:
+              print(f"\n=== {method.__class__.__name__} ===")
+              points = method.solve()
+              method.show_result(points)
+
+       # Plot step size vs error graph
+        plot_error_vs_h(methods, h_list, xn, exact)
+
+        print("----------- Power method--------------")
+        A = PowerMethod.read_matrix("matrix.txt")
+        x0 = PowerMethod.read_vector("vector.txt")
+
+        pm = PowerMethod(A)
+        dominant_eigenvalue, dominant_eigenvector, iterations = pm.compute(x0)
+
+        print("Dominant Eigenvalue:", dominant_eigenvalue)
+        print("Dominant Eigenvector:", dominant_eigenvector)
+        print("\nIterations:")
+        for it in iterations:
+              print(f"Iter {it[0]}: Eigenvalue = {it[1]:.6f}, Eigenvector = {it[2]}")
 
 if __name__ == "__main__":
     main()
